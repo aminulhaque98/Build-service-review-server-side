@@ -47,7 +47,7 @@ async function run() {
 
         app.get('/services', async (req, res) => {
             const query = {};
-            const cursor = serviceCollection.find(query).sort({price:-1});
+            const cursor = serviceCollection.find(query);
             const services = await cursor.toArray();
             res.send(services);
 
@@ -81,7 +81,7 @@ async function run() {
                     email: req.query.email
                 }
             }
-            const cursor = reviewCollection.find(query);
+            const cursor = reviewCollection.find(query).sort({ _id: -1 });
             const reviews = await cursor.toArray();
             res.send(reviews);
         });
